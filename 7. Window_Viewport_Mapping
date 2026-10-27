@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <graphics.h>
+#include <conio.h>
+int main()
+{
+    int x[20], y[20], n, i;
+    int wx1, wy1, wx2, wy2;
+    int vx1, vy1, vx2, vy2;
+    float sx, sy;
+    int gd = DETECT, gm;
+    printf("Enter the window coordinates: ");
+    scanf("%d%d%d%d", &wx1, &wy1, &wx2, &wy2);
+    printf("Enter the viewport coordinates: ");
+    scanf("%d%d%d%d", &vx1, &vy1, &vx2, &vy2);
+    printf("Enter the number of vertices: ");
+    scanf("%d", &n);
+    printf("Enter the %d pairs of coordinates:\n", n);
+    for (i = 0; i < n; i++)
+    {
+        scanf("%d%d", &x[i], &y[i]);
+    }
+    initgraph(&gd, &gm, "C:\\TURBOC3\\BGI");
+    outtextxy(wx1, wy1 - 20, "WINDOW");
+    rectangle(wx1, wy1, wx2, wy2);
+    for (i = 0; i < n; i++)
+    {
+        line(x[i], y[i], x[(i + 1) % n], y[(i + 1) % n]);
+    }
+    sx = (float)(vx2 - vx1) / (wx2 - wx1);
+    sy = (float)(vy2 - vy1) / (wy2 - wy1);
+    for (i = 0; i < n; i++)
+    {
+        x[i] = sx * (x[i] - wx1) + vx1;
+        y[i] = sy * (y[i] - wy1) + vy1;
+    }
+    outtextxy(vx1, vy1 - 20, "VIEWPORT");
+    rectangle(vx1, vy1, vx2, vy2);
+    for (i = 0; i < n; i++)
+    {
+        line(x[i], y[i], x[(i + 1) % n], y[(i + 1) % n]);
+    }
+    getch();
+    closegraph();
+    return 0;
+}
