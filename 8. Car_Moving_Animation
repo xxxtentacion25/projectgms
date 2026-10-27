@@ -1,8 +1,6 @@
-
 #include <graphics.h>
 #include <conio.h>
 #include <dos.h>
-
 void drawcar(int x)
 {
     rectangle(x, 250, x + 100, 290);
