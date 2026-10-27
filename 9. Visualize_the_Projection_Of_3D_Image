@@ -1,0 +1,36 @@
+#include<conio.h>
+#include<graphics.h>
+void main()
+{
+    int gd = DETECT, gm, i;
+    initgraph(&gd, &gm, "C:\\TURBOC3\\BGI");
+    for(i = 1; i <= 4; i++)
+    {
+        cleardevice();        
+        if(i == 4)
+        {
+            outtextxy(20, 20, "ALL VIEWS PROJECTION");
+        }
+
+        if(i == 1 || i == 4)
+        {
+            outtextxy(100, 250, "3D IMAGE");
+            bar3d(100, 100, 200, 200, 40, 1);
+        }
+        if(i == 2 || i == 4)
+        {
+            outtextxy(300, 180, "TOP VIEW");
+            line(400, 200, 440, 150); line(400, 200, 300, 150);
+            line(300, 150, 340, 100); line(340, 100, 440, 150);
+        }
+        if(i == 3 || i == 4)
+        {
+            outtextxy(500, 220, "SIDE VIEW");
+            rectangle(500, 100, 600, 200);
+            outtextxy(300, 370, "FRONT VIEW");
+            rectangle(400, 250, 440, 350); rectangle(300, 250, 400, 350);
+        }
+        getch();
+    }
+    closegraph();
+}
