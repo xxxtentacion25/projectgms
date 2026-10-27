@@ -1,0 +1,27 @@
+
+#include <graphics.h>
+#include <conio.h>
+#include <dos.h>
+
+void drawcar(int x)
+{
+    rectangle(x, 250, x + 100, 290);
+    rectangle(x + 20, 220, x + 80, 250);
+    circle(x + 20, 300, 10);
+    circle(x + 80, 300, 10);
+}
+int main()
+{
+    int gd = DETECT, gm;
+    int x;
+    initgraph(&gd, &gm, "C:\\TURBOC3\\BGI");
+    for (x = 0; x < 540; x = x + 5)
+    {
+        cleardevice();
+        drawcar(x);
+        delay(100);
+    }
+    getch();
+    closegraph();
+    return 0;
+}
