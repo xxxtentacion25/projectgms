@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+void main()
+{
+    float h, s, v, r, g, b, f, aa, bb, cc;
+    int i;
+    clrscr();
+    printf("Enter H S V (0-1): ");
+    scanf("%f%f%f", &h, &s, &v);
+    if (s == 0)
+    {
+        r = g = b = v;
+    }
+    else
+    {
+        if (h >= 1.0) h = 0;
+        h *= 6.0;
+        i = floor(h);
+        f = h - i;
+        aa = v * (1 - s);
+        bb = v * (1 - (s * f));
+        cc = v * (1 - (s * (1 - f)));
+        switch (i)
+        {
+            case 0: r = v;  g = cc; b = aa; break;
+            case 1: r = bb; g = v;  b = aa; break;
+            case 2: r = aa; g = v;  b = cc; break;
+            case 3: r = aa; g = bb; b = v;  break;
+            case 4: r = cc; g = aa; b = v;  break;
+            case 5: r = v;  g = aa; b = bb; break;
+        }
+    }
+    printf("\nRGB: %f  %f  %f\n", r, g, b);
+    getch();
+}
