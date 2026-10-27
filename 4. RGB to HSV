@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <conio.h>
+void main()
+{
+    float r, g, b, h, s, v, max, min, d;
+    clrscr();
+    printf("Enter R G B (0-1): ");
+    scanf("%f%f%f", &r, &g, &b);
+    max = r;
+    if (g > max) max = g;
+    if (b > max) max = b;
+    min = r;
+    if (g < min) min = g;
+    if (b < min) min = b;
+    d = max - min;
+    v = max;
+    if (max == 0)
+        s = 0;
+    else
+        s = d / max;
+    if (d == 0)
+        h = 0;
+    else if (max == r)
+        h = (g - b) / d;
+    else if (max == g)
+        h = 2 + (b - r) / d;
+    else
+        h = 4 + (r - g) / d;
+    h = h * 60;
+    if (h < 0)
+        h = h + 360;
+    h = h / 360;
+    printf("\nH = %f", h);
+    printf("\nS = %f", s);
+    printf("\nV = %f", v);
+    getch();
+}
