@@ -1,0 +1,14 @@
+#include <stdio.h>
+#include <graphics.h>
+#include <conio.h>
+int main()
+{
+    int xc, yc, rx, ry, gd = DETECT, gm;
+    printf("Enter xc yc rx ry: ");
+    scanf("%d%d%d%d", &xc, &yc, &rx, &ry);
+    initgraph(&gd, &gm, "C:\\TURBOC3\\BGI");
+    ellipse(xc, yc, 0, 360, rx, ry);
+    getch();
+    closegraph();
+    return 0;
+}
