@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <graphics.h>
+#include <conio.h>
+int main()
+{
+    int W = 100, E = 300; // Window: xmin/ymin=100, xmax/ymax=300
+    double x1, y1, x2, y2, x, y;
+    int c1 = 0, c2 = 0, c, gd = DETECT, gm;
+    printf("Enter x1 y1 x2 y2: ");
+    scanf("%lf%lf%lf%lf", &x1, &y1, &x2, &y2);
+    initgraph(&gd, &gm, "C:\\TURBOC3\\BGI");
+    rectangle(W, W, E, E);
+    line(x1, y1, x2, y2);
+    getch();
+    while (1)
+{
+        c1 = (x1 < W)?1:(x1 > E)?2:(y1 < W)?4:(y1 > E)?8:0;
+        c2 = (x2 < W)?1:(x2 > E)?2:(y2 < W)?4:(y2 > E)?8:0;
+        if ((c1 | c2) == 0) break;       // Completely Inside
+        if (c1 & c2) { x1=x2=y1=y2=0; break; } // Completely Outside
+        c = c1 ? c1 : c2;
+        if (c & 8)      { x = x1 + (x2 - x1) * (E - y1) / (y2 - y1); y = E; }
+        else if (c & 4) { x = x1 + (x2 - x1) * (W - y1) / (y2 - y1); y = W; }
+        else if (c & 2) { y = y1 + (y2 - y1) * (E - x1) / (x2 - x1); x = E; }
+        else            { y = y1 + (y2 - y1) * (W - x1) / (x2 - x1); x = W; }
+        if (c == c1) { x1 = x; y1 = y; }
+        else         { x2 = x; y2 = y; }
+}
+    cleardevice();
+    rectangle(W, W, E, E);
+    line(x1, y1, x2, y2);
+    getch();
+    closegraph();
+    return 0;
+}
